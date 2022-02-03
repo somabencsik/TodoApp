@@ -10,7 +10,9 @@ int main()
 	AddTodo(&tl, "Get up at 8am");
 	AddTodo(&tl, "Get up at 9am");
 
-	ListTodos(tl);
+	char* everyTodo = ListTodos(tl);
+
+	printf("%s\n", everyTodo);
 
 	return 0;
 }

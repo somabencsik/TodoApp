@@ -3,6 +3,8 @@
 
 #define MIN_SIZE 3
 
+#include <string.h>
+
 #include "Todo.h"
 
 typedef struct _TodoList
@@ -35,12 +37,23 @@ void AddTodo(TodoList *tl, char* Task)
 	tl->RealSize = tl->RealSize + 1;
 }
 
-void ListTodos(TodoList tl)
+char* ListTodos(TodoList tl)
 {
-	for (unsigned int i = 0; i < tl.RealSize; ++i)
+	char* everyTodo;
+	everyTodo = malloc(tl.RealSize * strlen(tl.Todos[0].Task) + 1);
+
+	strcpy(everyTodo, " - ");
+	strcat(everyTodo, tl.Todos[0].Task);
+	strcat(everyTodo, "\n");
+
+	for (unsigned int i = 1; i < tl.RealSize; ++i)
 	{
-		printf("%d. task: %s\n", i + 1, tl.Todos[i].Task);
+		strcat(everyTodo, " - ");
+		strcat(everyTodo, tl.Todos[i].Task);
+		strcat(everyTodo, "\n");
 	}
+
+	return everyTodo;
 }
 
 #endif // !TODOLIST_H
